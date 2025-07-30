@@ -1,0 +1,32 @@
+Key_API :  # Thay thế bằng API Key của bạn
+
+Lenh OpenAI
+"""
+from openai import OpenAI
+import time # Đảm bảo bạn đã import thư viện time
+
+# 1. Khởi tạo client (Dòng này của bạn đã đúng)
+client = OpenAI(api_key="...") # Thay API key của bạn vào đây
+
+# 2. Sửa lại các hàm gọi API để dùng 'client'
+def get_completion(prompt, model="gpt-3.5-turbo"):
+    messages = [{"role": "user", "content": prompt}]
+    # SỬA Ở ĐÂY: Dùng client.chat.completions.create
+    response = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        temperature=0,
+    )
+    # SỬA Ở ĐÂY: Dùng .message.content
+    return response.choices[0].message.content
+
+def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0):
+    # SỬA Ở ĐÂY: Dùng client.chat.completions.create
+    response = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        temperature=temperature
+    )
+    # SỬA Ở ĐÂY: Dùng .message.content
+    return response.choices[0].message.content
+    """
